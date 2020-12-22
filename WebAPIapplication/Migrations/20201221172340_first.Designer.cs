@@ -9,7 +9,7 @@ using WebAPIapplication.Model;
 
 namespace WebAPIapplication.Migrations
 {
-    [DbContext(typeof(StudentContext))]
+    [DbContext(typeof(dbAPITestContext))]
     [Migration("20201221172340_first")]
     partial class first
     {

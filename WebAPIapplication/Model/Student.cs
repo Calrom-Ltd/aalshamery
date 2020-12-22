@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace WebAPIapplication.Model
 {
-    public class Student
+    public partial class Student
     {
-        public int ID { set; get; }
-        public string First_Name { set; get; }
-        public string Last_Name { set; get; }
-        public string Address { set; get; }
-        public string Course { set; get; }
-        public string University { set; get; }
-        public DateTime DateOfBirth { set; get; }
-
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public string Course { get; set; }
+        public string University { get; set; }
+        public DateTime? DateOfBirth { get; set; }
     }
 }

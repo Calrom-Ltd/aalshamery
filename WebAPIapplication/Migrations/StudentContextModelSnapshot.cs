@@ -8,7 +8,7 @@ using WebAPIapplication.Model;
 
 namespace WebAPIapplication.Migrations
 {
-    [DbContext(typeof(StudentContext))]
+    [DbContext(typeof(dbAPITestContext))]
     partial class StudentContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
