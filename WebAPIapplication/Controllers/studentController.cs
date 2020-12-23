@@ -23,44 +23,40 @@ namespace WebAPIapplication.Controllers
         //{
         //   return  _context.Students.ToList();
         //}
-        [HttpPost("Enter UserName")]
-        public void User_Name(string username)
+        [HttpPost("Enter_UserName_Password")]
+        public void User_Name(string username, string password)
         {
-            var user_name = _context.TblLogins.SingleOrDefault(x => x.UserName == username);
-            if (user_name == null)
+            TblLogin tblLogin = new TblLogin();
+            tblLogin.UserName = username;
+            tblLogin.Password = password;
+            var login = _context.TblLogins.SingleOrDefault(x => x.UserName == tblLogin.UserName && x.Password == tblLogin.Password);
+            if (login != null)
             {
-                CheckInfo.U = null;
+                CheckInfo.Message = login.Messages;
             }
             else
             {
-                CheckInfo.U = username;
+                CheckInfo.Message = "Invalid UserName Or Password";
             }
+                
+            //var user_name = _context.TblLogins.SingleOrDefault(x => x.UserName == username);
+            //var pass_word = _context.TblLogins.SingleOrDefault(x => x.Password == password);
+            //if (user_name != null && pass_word !=null )
+            //{
+            //    CheckInfo.U = user_name.ToString();
+            //    CheckInfo.P = pass_word.ToString();
+
+            //    //TblLogin tblLogin = new TblLogin();
+            //    //tblLogin.UserName = username;
+
+            //}
+
         }
-        [HttpPost("Enter Password")]
-        public void Password(string password)
-        {
-            var pass_word = _context.TblLogins.SingleOrDefault(x => x.Password == password);
-            if (pass_word == null)
-            {
-                CheckInfo.P = null;
-            }
-            else
-            {
-                CheckInfo.P = password;
-            }
-        }
+        
         [HttpGet("Messages")]
-        public IActionResult Get_messages()
+        public string Get_messages()
         {
-            if(CheckInfo.U != null && CheckInfo.P != null)
-            {
-                var Username = _context.TblLogins.SingleOrDefault(x => x.UserName == CheckInfo.U && x.Password == CheckInfo.P);
-                return Ok(Username.Messages);
-            }
-            else
-            {
-                return NotFound("Invalid UserName or Password");
-            }
+            return (CheckInfo.Message); 
         }
         //public IActionResult Index()
         //{

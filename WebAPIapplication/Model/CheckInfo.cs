@@ -7,7 +7,7 @@ namespace WebAPIapplication.Model
 {
     public class CheckInfo
     {
-        public static string U { set; get; }
-        public static string P { set; get; }
+        public static string Message { set; get; }
+        //public static string P { set; get; }
     }
 }
