@@ -10,11 +10,11 @@ namespace WebAPIapplication.Controllers
     //[Route("api/[Controller]")]
     [ApiController]
     [Route("[controller]")]
-    public class studentController : Controller
+    public class loginController : Controller
     {
 
         private dbAPITestContext _context;
-        public studentController(dbAPITestContext context)
+        public loginController(dbAPITestContext context)
         {
             _context = context;
         }

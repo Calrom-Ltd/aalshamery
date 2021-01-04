@@ -17,7 +17,7 @@ namespace WebAPIapplication.Model
         {
         }
 
-        public virtual DbSet<Student> Students { get; set; }
+        
         public virtual DbSet<TblLogin> TblLogins { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -33,27 +33,7 @@ namespace WebAPIapplication.Model
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
 
-            modelBuilder.Entity<Student>(entity =>
-            {
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.Address).HasMaxLength(50);
-
-                entity.Property(e => e.Course).HasMaxLength(50);
-
-                entity.Property(e => e.DateOfBirth).HasColumnType("date");
-
-                entity.Property(e => e.FirstName)
-                    .HasMaxLength(50)
-                    .HasColumnName("First_Name");
-
-                entity.Property(e => e.LastName)
-                    .HasMaxLength(50)
-                    .HasColumnName("Last_Name");
-
-                entity.Property(e => e.University).HasMaxLength(50);
-            });
-
+            
             modelBuilder.Entity<TblLogin>(entity =>
             {
                 entity.ToTable("tbl_Login");
