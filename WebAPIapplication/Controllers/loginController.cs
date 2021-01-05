@@ -7,7 +7,6 @@ using WebAPIapplication.Model;
 
 namespace WebAPIapplication.Controllers
 {
-    //[Route("api/[Controller]")]
     [ApiController]
     [Route("[controller]")]
     public class loginController : Controller
@@ -18,49 +17,43 @@ namespace WebAPIapplication.Controllers
         {
             _context = context;
         }
-        //[HttpGet("Studentsss")]
-        //public List<Student> GetStudents()
-        //{
-        //   return  _context.Students.ToList();
-        //}
-        [HttpPost("Enter_UserName_Password")]
-        public void User_Name(string username, string password)
+        [HttpPost("UserName & Password")]
+        public IActionResult User_Name(string username, string password)
         {
             TblLogin tblLogin = new TblLogin();
+            CheckInfo info = new CheckInfo();
             tblLogin.UserName = username;
             tblLogin.Password = password;
             var login = _context.TblLogins.SingleOrDefault(x => x.UserName == tblLogin.UserName && x.Password == tblLogin.Password);
+            
             if (login != null)
             {
-                CheckInfo.Message = login.Messages;
+                return Ok("You have entered successfully");
             }
             else
             {
-                CheckInfo.Message = "Invalid UserName Or Password";
+                return BadRequest("Invalid username or password");
             }
-                
-            //var user_name = _context.TblLogins.SingleOrDefault(x => x.UserName == username);
-            //var pass_word = _context.TblLogins.SingleOrDefault(x => x.Password == password);
-            //if (user_name != null && pass_word !=null )
-            //{
-            //    CheckInfo.U = user_name.ToString();
-            //    CheckInfo.P = pass_word.ToString();
-
-            //    //TblLogin tblLogin = new TblLogin();
-            //    //tblLogin.UserName = username;
-
-            //}
-
         }
-        
-        [HttpGet("Messages")]
-        public string Get_messages()
+
+        [HttpGet("ID")]
+        public IActionResult Get_messages(int id)
         {
-            return (CheckInfo.Message); 
+            var User_messages = _context.tbl_User_Massages.SingleOrDefault(x => x.User_id == id);
+            if (User_messages!= null)
+            {
+                CheckInfo checkInformation = new CheckInfo();
+                checkInformation.DateOfBirth = User_messages.DateOfBirth;
+                checkInformation.Subject = User_messages.Subject;
+                checkInformation.Messages = User_messages.Messages;
+
+                return Ok(checkInformation);
+            }
+            else
+            {
+                return BadRequest("invalid UserID");
+            }
+            
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
     }
 }

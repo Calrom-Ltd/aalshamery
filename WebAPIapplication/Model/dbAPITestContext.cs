@@ -19,12 +19,13 @@ namespace WebAPIapplication.Model
 
         
         public virtual DbSet<TblLogin> TblLogins { get; set; }
+        public virtual DbSet<tbl_User_Massage> tbl_User_Massages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+
                 optionsBuilder.UseSqlServer("Server=DESKTOP-GEFU4OC\\SQLEXPRESS;Initial Catalog=dbAPITest;Integrated Security=True");
             }
         }
@@ -33,7 +34,7 @@ namespace WebAPIapplication.Model
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
 
-            
+
             modelBuilder.Entity<TblLogin>(entity =>
             {
                 entity.ToTable("tbl_Login");
@@ -43,6 +44,18 @@ namespace WebAPIapplication.Model
                 entity.Property(e => e.Password).HasMaxLength(50);
 
                 entity.Property(e => e.UserName).HasMaxLength(50);
+            });
+            modelBuilder.Entity<tbl_User_Massage>(entity =>
+            {
+                entity.ToTable("tbl_User_Massage");
+
+                entity.Property(e => e.id).HasColumnName("ID");
+
+                entity.Property(e => e.DateOfBirth).HasColumnName("DateOfBirth");
+
+                entity.Property(e => e.Subject).HasColumnName("Subject");
+                entity.Property(e => e.Messages).HasColumnName("Messages");
+                entity.Property(e => e.User_id).HasColumnName("User_id");
             });
 
             OnModelCreatingPartial(modelBuilder);
