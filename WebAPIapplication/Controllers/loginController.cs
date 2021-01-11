@@ -17,7 +17,7 @@ namespace WebAPIapplication.Controllers
         {
             _context = context;
         }
-        [HttpPost("UserName & Password")]
+        [HttpPost("login")]
         public IActionResult User_Name(string username, string password)
         {
             TblLogin tblLogin = new TblLogin();
@@ -36,16 +36,16 @@ namespace WebAPIapplication.Controllers
             }
         }
 
-        [HttpGet("ID")]
+        [HttpGet("getmessages")]
         public IActionResult Get_messages(int id)
         {
-            var User_messages = _context.tbl_User_Massages.SingleOrDefault(x => x.User_id == id);
-            if (User_messages!= null)
+            var Usermessages = _context.tbl_User_Massages.SingleOrDefault(x => x.User_id == id);
+            if (Usermessages != null)
             {
                 CheckInfo checkInformation = new CheckInfo();
-                checkInformation.DateOfBirth = User_messages.DateOfBirth;
-                checkInformation.Subject = User_messages.Subject;
-                checkInformation.Messages = User_messages.Messages;
+                checkInformation.DateOfBirth = Usermessages.DateOfBirth;
+                checkInformation.Subject = Usermessages.Subject;
+                checkInformation.Messages = Usermessages.Messages;
 
                 return Ok(checkInformation);
             }
