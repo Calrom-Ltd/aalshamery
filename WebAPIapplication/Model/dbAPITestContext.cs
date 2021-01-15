@@ -1,36 +1,68 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-
-#nullable disable
+﻿// <copyright file="dbAPITestContext.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace WebAPIapplication.Model
 {
-    public partial class dbAPITestContext : DbContext
+    using System;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata;
+
+    /// <summary>
+    /// this class connect to the database.
+    /// </summary>
+    public partial class DbAPITestContext : DbContext, IDbAPITestContext
     {
-        public dbAPITestContext()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DbAPITestContext"/> class.
+        /// this is the constractor of the class.
+        /// </summary>
+        public DbAPITestContext()
         {
         }
-
-        public dbAPITestContext(DbContextOptions<dbAPITestContext> options)
+        #pragma warning disable SA1614 // Element parameter documentation should have text
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DbAPITestContext"/> class.
+        /// this is a nother constractor.
+        /// </summary>
+        /// <param name="options"></param>
+        public DbAPITestContext(DbContextOptions<DbAPITestContext> options)
+        #pragma warning restore SA1614 // Element parameter documentation should have text
             : base(options)
         {
         }
 
-        
+        /// <summary>
+        /// Gets or sets from TblLogins table in the database.
+        /// </summary>
         public virtual DbSet<TblLogin> TblLogins { get; set; }
-        public virtual DbSet<tbl_User_Massage> tbl_User_Massages { get; set; }
 
+        /// <summary>
+        /// Gets or sets from tbl_User_Massages table in the database.
+        /// </summary>
+        public virtual DbSet<Tbl_User_Massage> Tbl_User_Massages { get; set; }
+
+        #pragma warning disable SA1614 // Element parameter documentation should have text
+        /// <summary>
+        /// this helps to connect to the database.
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        #pragma warning restore SA1614 // Element parameter documentation should have text
         {
             if (!optionsBuilder.IsConfigured)
             {
-
                 optionsBuilder.UseSqlServer("Server=DESKTOP-GEFU4OC\\SQLEXPRESS;Initial Catalog=dbAPITest;Integrated Security=True");
             }
         }
 
+        #pragma warning disable SA1614 // Element parameter documentation should have text
+        /// <summary>
+        /// this helps to connect to the tables in the database.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
+        #pragma warning restore SA1614 // Element parameter documentation should have text
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
 
@@ -45,20 +77,20 @@ namespace WebAPIapplication.Model
 
                 entity.Property(e => e.UserName).HasMaxLength(50);
             });
-            modelBuilder.Entity<tbl_User_Massage>(entity =>
+            modelBuilder.Entity<Tbl_User_Massage>(entity =>
             {
                 entity.ToTable("tbl_User_Massage");
 
-                entity.Property(e => e.id).HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.DateOfBirth).HasColumnName("DateOfBirth");
 
                 entity.Property(e => e.Subject).HasColumnName("Subject");
                 entity.Property(e => e.Messages).HasColumnName("Messages");
-                entity.Property(e => e.User_id).HasColumnName("User_id");
+                entity.Property(e => e.Userid).HasColumnName("User_id");
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            this.OnModelCreatingPartial(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

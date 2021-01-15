@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPIapplication</name>
+    </assembly>
+    <members>
+        <member name="T:WebAPIapplication.Controllers.LoginController">
+            <summary>
+            This class does something.
+            </summary>
+        </member>
+        <member name="M:WebAPIapplication.Controllers.LoginController.#ctor(WebAPIapplication.Model.IDbAPITestContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebAPIapplication.Controllers.LoginController"/> class.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:WebAPIapplication.Controllers.LoginController.User_Name(System.String,System.String)">
+            <summary>
+            this method takes username and password to check them in the database.
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebAPIapplication.Controllers.LoginController.Getmessages(System.Int32)">
+            <summary>
+            this endpoint takes User Id and returns the massages belong to that Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WebAPIapplication.Model.CheckInfo">
+            <summary>
+            this class hold the properties we need from Tbl_user_message.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.CheckInfo.DateOfBirth">
+            <summary>
+            Gets or sets the date of birth of the user.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.CheckInfo.Subject">
+            <summary>
+            Gets or sets the subject of the message.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.CheckInfo.Messages">
+            <summary>
+            Gets or sets the messages of the user.
+            </summary>
+        </member>
+        <member name="T:WebAPIapplication.Model.DbAPITestContext">
+            <summary>
+            this class connect to the database.
+            </summary>
+        </member>
+        <member name="M:WebAPIapplication.Model.DbAPITestContext.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebAPIapplication.Model.DbAPITestContext"/> class.
+            this is the constractor of the class.
+            </summary>
+        </member>
+        <member name="M:WebAPIapplication.Model.DbAPITestContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{WebAPIapplication.Model.DbAPITestContext})">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebAPIapplication.Model.DbAPITestContext"/> class.
+            this is a nother constractor.
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="P:WebAPIapplication.Model.DbAPITestContext.TblLogins">
+            <summary>
+            Gets or sets from TblLogins table in the database.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.DbAPITestContext.Tbl_User_Massages">
+            <summary>
+            Gets or sets from tbl_User_Massages table in the database.
+            </summary>
+        </member>
+        <member name="M:WebAPIapplication.Model.DbAPITestContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            this helps to connect to the database.
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="M:WebAPIapplication.Model.DbAPITestContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            this helps to connect to the tables in the database.
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:WebAPIapplication.Model.IDbAPITestContext">
+            <summary>
+            this is an interface for dbAPITestContext class.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.IDbAPITestContext.Tbl_User_Massages">
+            <summary>
+            Gets or sets Tbl_User_Massages table.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.IDbAPITestContext.TblLogins">
+            <summary>
+            Gets or sets TblLogins table.
+            </summary>
+        </member>
+        <member name="T:WebAPIapplication.Model.TblLogin">
+            <summary>
+            this class holds the data from TblLogin table in the database.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.TblLogin.Id">
+            <summary>
+            Gets or sets the id of the user.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.TblLogin.UserName">
+            <summary>
+            Gets or sets the UserName of the user.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.TblLogin.Password">
+            <summary>
+            Gets or sets the Password of the user.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.TblLogin.Messages">
+            <summary>
+            Gets or sets the Messages of the user.
+            </summary>
+        </member>
+        <member name="T:WebAPIapplication.Model.Tbl_User_Massage">
+            <summary>
+            this class holds the data from Tbl_User_Massage table in the database.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.Tbl_User_Massage.Id">
+            <summary>
+            Gets or sets the id of the user.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.Tbl_User_Massage.DateOfBirth">
+            <summary>
+            Gets or sets the DateOfBirth of the user.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.Tbl_User_Massage.Subject">
+            <summary>
+            Gets or sets the Subject of the user.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.Tbl_User_Massage.Messages">
+            <summary>
+            Gets or sets the Messages of the user.
+            </summary>
+        </member>
+        <member name="P:WebAPIapplication.Model.Tbl_User_Massage.Userid">
+            <summary>
+            Gets or sets the Userid of the user.
+            </summary>
+        </member>
+    </members>
+</doc>
